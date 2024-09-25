@@ -13,10 +13,14 @@ import StarterKit from "@tiptap/starter-kit";
 import { Markdown } from "tiptap-markdown";
 import CustomKeymap from "./custom-keymap";
 import { ImageResizer } from "./image-resizer";
-import GlobalDragHandle from "tiptap-extension-global-drag-handle";
+import { Twitter } from "./twitter";
+import { Mathematics } from "./mathematics";
 import UpdatedImage from "./updated-image";
 
+import CharacterCount from "@tiptap/extension-character-count";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import Youtube from "@tiptap/extension-youtube";
+import GlobalDragHandle from "tiptap-extension-global-drag-handle";
 
 const PlaceholderExtension = Placeholder.configure({
   placeholder: ({ node }) => {
@@ -28,23 +32,14 @@ const PlaceholderExtension = Placeholder.configure({
   includeChildren: true,
 });
 
-const simpleExtensions = [
-  TiptapUnderline,
-  TextStyle,
-  Color,
-  Highlight.configure({
-    multicolor: true,
-  }),
+const HighlightExtension = Highlight.configure({
+  multicolor: true,
+});
 
-  Markdown.configure({
-    html: false,
-    transformCopiedText: true,
-  }),
-  CustomKeymap,
-  GlobalDragHandle.configure({
-    scrollTreshold: 100,
-  }),
-] as const;
+const MarkdownExtension = Markdown.configure({
+  html: false,
+  transformCopiedText: true,
+});
 
 const Horizontal = HorizontalRule.extend({
   addInputRules() {
@@ -77,10 +72,17 @@ export {
   TaskItem,
   TaskList,
   TiptapImage,
+  TiptapUnderline,
+  MarkdownExtension,
+  TextStyle,
+  Color,
+  HighlightExtension,
+  CustomKeymap,
   TiptapLink,
   UpdatedImage,
-  simpleExtensions,
+  Youtube,
+  Twitter,
+  Mathematics,
+  CharacterCount,
+  GlobalDragHandle,
 };
-
-// Todo: Maybe I should create an utils entry
-export { getPrevText } from "../utils/utils";
